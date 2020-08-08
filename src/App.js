@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import asyncComponent from './hoc/asyncComponent/asyncComponent';
 
 import Layout from './hoc/Layout/Layout';
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 import Logout from './containers/Auth/Logout/Logout';
 import * as actions from './store/actions/index';
-import asyncComponent from './hoc/asyncComponent/asyncComponent';
 
 const asyncCheckout = asyncComponent(() => {
-  import('./containers/Checkout/Checkout');
+  return import('./containers/Checkout/Checkout');
 });
 
 const asyncOrders = asyncComponent(() => {
-  import('./containers/Orders/Orders');
+  return import('./containers/Orders/Orders');
 });
 
 const asyncAuth = asyncComponent(() => {
-  import('./containers/Auth/Auth');
+  return import('./containers/Auth/Auth');
 });
 
 class App extends Component {
